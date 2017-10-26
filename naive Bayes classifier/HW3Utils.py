@@ -31,9 +31,9 @@ def f1_score(test, answers):
     recall = tp / (tp + fn) if tp + fn > 0 else 1 if fp == 0 else 0
     prcision = tp / (tp + fp) if tp + fp > 0 else 1 if fn == 0 else 0
     if prcision + recall == 0:
-        return 0, fn
+        return 0, tp, tn, fp, fn
     else:
-        return 2 * prcision * recall / (prcision + recall), fn
+        return 2 * prcision * recall / (prcision + recall), tp, tn, fp, fn
     
 def accuracy_score(test, answers):
     accuracy = 0
