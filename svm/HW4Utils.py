@@ -55,3 +55,21 @@ def polynomial_kernel(x, y, d=3):
 
 def rbf_kernel(x, y, gamma=5): # Radial Basis Function
     return np.exp(-gamma * np.linalg.norm(x-y)**2)
+
+def kNN(k, trainSet, testSet, metric, kernel):
+    answers = []
+    for testPoint in testSet:
+        testDist = [[metric([testPoint[0], testPoint[1]], [trainPoint[0], trainPoint[1]]), trainPoint[2]] for trainPoint in trainSet]
+        testDist.sort(key=lambda d:d[0])
+        pointClass = 0
+        for i in range(k):
+            if testDist[i][1] == 1:
+                pointClass += kernel(testDist[i][0])
+            else:
+                pointClass -= kernel(testDist[i][0])
+        if pointClass > 0:
+            pointClass = 1
+        else:
+            pointClass = 0
+        answers.append([testPoint[0], testPoint[1], pointClass])
+    return answers
