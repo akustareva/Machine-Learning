@@ -27,10 +27,10 @@ def f1_score(test, answers):
             fn += 1
     recall = tp / (tp + fn) if tp + fn > 0 else 1 if fp == 0 else 0
     prcision = tp / (tp + fp) if tp + fp > 0 else 1 if fn == 0 else 0
-    if prcision + recall == 0:
-        return 0
-    else:
-        return 2 * prcision * recall / (prcision + recall)
+    score = 0
+    if prcision + recall != 0:
+        score = 2 * prcision * recall / (prcision + recall)
+    return score, tp, tn, fp, fn
 
 def kFold(dataLen, foldsCount, shuffle=False):
     indexes = np.arange(dataLen)
