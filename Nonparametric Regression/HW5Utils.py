@@ -13,13 +13,13 @@ def showData(data):
     ax.set_ylabel(r'y', fontsize=12)
     plt.show()
 
-def showPredictedData(data, predictedData):
+def showPredictedData(data, predictedData, title, label1=r"Actual", label2=r"Predicted"):
     fig, ax = plt.subplots()
-    ax.plot(data['x'], data['y'], label=r"Actual")
-    ax.plot(predictedData['x'], predictedData['y'], label=r"Predicted")
+    ax.plot(data['x'], data['y'], label=label1)
+    ax.plot(predictedData['x'], predictedData['y'], label=label2)
     ax.set_xlabel(r'x', fontsize=12)
     ax.set_ylabel(r'y', fontsize=12)
-    ax.set_title('Kernel regression')
+    ax.set_title(title)
     ax.legend(loc=2)
     plt.show()
 
